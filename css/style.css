@@ -42,7 +42,7 @@ ul {
 }
 
 .section {
-    background: var(--bg-black-900);
+    background: var(--bg-black-100);
     display: block;
     padding: 0 30px;
     opacity: 1;
@@ -54,7 +54,6 @@ ul {
     z-index: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    transition: all 0.3s ease;
 }
 
 .section.back-section {
@@ -64,17 +63,20 @@ ul {
 .section.active {
     z-index: 2;
     opacity: 1;
-    animation: slideSection 1s ease;
+    animation: transitionIn 0.75s;
 }
 
-@keyframes slideSection {
-    0% {
-        transform: translateX(100%);
+@keyframes transitionIn {
+    from {
+        opacity: 0;
+        transform:translateY(-10px)
     }
 
-    100% {
-        transform: translateX(0%);
+    to{
+        opacity: 1;
+        transform: translateY(0);
     }
+        
 }
 
 .hidden {
@@ -331,8 +333,21 @@ ul {
     border-bottom: 1px solid var(--bg-black-50);
     color: var(--text-black-900);
     padding: 5px 15px;
+    position: relative;
 }
-
+.aside .nav li a::after {
+    content: '';
+    width: 0%;
+    height: 3px;
+    background: var(--skin-color);
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    transition: 0.5s;
+}
+.aside .nav li a:hover::after {
+    width:100%;
+}
 .aside .nav li a.active {
     color: var(--skin-color);
 }
@@ -361,7 +376,7 @@ h3.hello span {
     font-family: 'Clicker Script', cursive;
     font-size: 30px;
     font-weight: 700;
-    color: var(--skin-color)
+    color: var(--skin-color);
 }
 
 h3.my-profession {
@@ -410,7 +425,7 @@ h3.my-profession {
 
 .home .home-img img {
     margin: auto;
-    border-radius: 5px;
+    border-radius: 50px;
     height: 400px;
 }
 
@@ -514,8 +529,19 @@ h3.my-profession {
     height: 100%;
     border-radius: 4px;
     background-color: var(--skin-color);
+    animation: progress 3s ease-in-out forwards;
+    opacity: 0;
 }
-
+@keyframes progress {
+    0% {
+        width: 0%;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+    
+}
 .about .about-content .skills .skill-item .skill-percent {
     position: absolute;
     right: 0;
@@ -524,7 +550,6 @@ h3.my-profession {
     font-weight: 400;
     line-height: 40px;
 }
-
 .about .about-content .education,
 .about .about-content .experience {
     flex: 0 0 50%;
@@ -924,6 +949,23 @@ h3.my-profession {
     inset: 0px 0px 0px 35px;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit,minmax(100px, 1fr));
+}
+.social-icon
+{
+    font-size: 40px;
+    display: flex;
+    align-items:baseline;
+    justify-content:space-evenly;
+    margin-top: 0px;
+}
+.social-icon1, .social-icon2, .social-icon3
+{
+    color: var(--skin-color);
+    transition: transform 0.5s;
+}
+.social-icon1:hover,.social-icon2:hover, .social-icon3:hover
+{
+    transform: translateY(-7px);
 }
 @keyframes buttons
 {
